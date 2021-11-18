@@ -6,6 +6,7 @@ var passLowerLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "
 var passUpperLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var passSpecLetters = ["!", "@", "#", "$", "%", "^", "&", "*"];
 
+// variables to be referenced later
 var pwLength;
 var specialCharacters;
 var upperCharacters;
@@ -14,6 +15,7 @@ var numericCharacters;
 var generateBtn = document.querySelector("#generate");
 var results = [];
 
+// prompt for length of characters, must be numeric input between 8 and 128
 var promptLength = function () {
   var passLength = window.prompt("Please choose a password length between 8 and 128"); // need to make this so it only excepts numbers, not letters
   passLength = parseInt(passLength);
@@ -27,27 +29,28 @@ var promptLength = function () {
   }
   pwLength = passLength;
 }
-
+// prompt for special character inclusion
 var promptSpecType = function () {
   var hasSpecChar = window.confirm("Do you want special characters in your password?");
   return hasSpecChar;
 }
-
+// prompt for uppercase character inclusion
 var promptUpCaseType = function () {
   var hasUpperChar = window.confirm("Do you want uppercase characters in your password?");
   return hasUpperChar;
 }
-
+// prompt for lowercase character inclusion
 var promptLowCaseType = function () {
   var hasLowerChar = window.confirm("Do you want lowercase characters in your password?");
   return hasLowerChar;
 }
-
+// prompt for numeric character inclusion
 var promptNumbType = function () {
   var hasNumbChar = window.confirm("Do you want numeric characters in your password?");
   return hasNumbChar;
 }
 
+// function to write the password
 function writePassword() {
 
   promptLength();
@@ -56,18 +59,18 @@ function writePassword() {
   lowerCharacters = promptLowCaseType();
   numericCharacters = promptNumbType();
   console.log(pwLength);
-
+// if user does not select a character type, gets alert
   if (!specialCharacters && !upperCharacters && !lowerCharacters && !numericCharacters) {
     window.alert("Please choose at least one character type.");
     promptLength();
   }
-
+// character randomization
   var randomElement = function (array) {
     var index = Math.floor(Math.random() * array.length);
     var element = array[index];
     return element;
   }
-
+// while loop to push characters into results array
   var randomArray = function(array){
     while (pwLength >= 0) {
       if (specialCharacters) {
@@ -101,16 +104,6 @@ randomArray(results);
     array.join("");
     return array.join("");
   }
-
-
-  // create function to store while loop - in while loop can push randomElement which the user is asked for into results array
-  // convert results array into string
-
-  // I THINK I need to look up how to randomize characters - not sure if done by referencing [i] in a randomNumber function?
-  // if loops to validate input
-
-  // Get references to the #generate element
-
 
   // Write password to the #password input
 
